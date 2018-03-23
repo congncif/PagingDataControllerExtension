@@ -16,7 +16,8 @@
 		13FE623C3803023A0BF6DD1EC665CC23 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D51129511F1F5F5C20E0D6F90419F16 /* AVFoundation.framework */; };
 		19F4C0F837CC490966661C05CD9CBF67 /* UIViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD3B83C75C5FFE0AD30706BF75AC473 /* UIViewController+Storyboard.swift */; };
 		206824BA13604A635744449FAA936589 /* PagingDataControllerExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3015E442CA9B1EFDCD9996E65A61571 /* PagingDataControllerExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2090CB40206549DC00F6D490 /* UIRefreshControl+Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090CB3E2065498100F6D490 /* UIRefreshControl+Block.swift */; };
+		2090CB47206550BE00F6D490 /* UIViewController+PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090CB44206550BE00F6D490 /* UIViewController+PagingData.swift */; };
+		2090CB48206550BE00F6D490 /* UIRefreshControl+Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090CB46206550BE00F6D490 /* UIRefreshControl+Block.swift */; };
 		24D3770366F5FE14B8B541289FE22F8E /* Array++.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AE79CF27AB371F4132FB8275BD8B20 /* Array++.swift */; };
 		269624BEFEF347EA4AD6069378F76D90 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B0D1F361355AE6012AF80258453E1A /* UIView+Nib.swift */; };
 		29E25265294799C096287FF0622E7E03 /* SiFUtilities-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FE9F7EA70DF97B1B0DA68B11BED4F4C3 /* SiFUtilities-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,7 +61,6 @@
 		B7ACD50B3B106C72F70D6F299D7DA6D6 /* SVPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1D8A90397FBD4BF7C55EE33247AFDF /* SVPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBD9A1B89F9CDD0CABED7B3553B07705 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DC87B39ABBBC18595BEEB8C8340FCA /* UIScrollView+SVInfiniteScrolling.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		BCCF94C77A4B2D3B0A98AFC8F6B0D2EC /* Number++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECE93BD4A085AC31988C3A55AA58E7 /* Number++.swift */; };
-		C0F3B007927027741D86A69648A0C1D7 /* UIViewController+PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F2E7591F2EAA0EB4CF324E646B814 /* UIViewController+PagingData.swift */; };
 		C59B4EF1CCF5BC74282D2A2FAB9701E9 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B19F36659165F5D7C0AE7E53AC0393F /* UIView+Animation.swift */; };
 		C9116DC8B18818F012610B8A59867A08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF477A57F960700394B8C028E60BEEBD /* UIViewController+Utils.swift */; };
 		D90EABA50F6DBED1665F1A7C4B7636D1 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DEB84C0D3C43890F3C098B0BEBF82 /* UIView+Utils.swift */; };
@@ -137,7 +137,8 @@
 		199DEB84C0D3C43890F3C098B0BEBF82 /* UIView+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "SiFUtilities/Classes/UIView+Utils.swift"; sourceTree = "<group>"; };
 		19DCF4D273010CBB6C674F33FB0F8C19 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2065B9AAFF4F01661C041D5F52D4D93E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2090CB3E2065498100F6D490 /* UIRefreshControl+Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Block.swift"; sourceTree = "<group>"; };
+		2090CB44206550BE00F6D490 /* UIViewController+PagingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PagingData.swift"; sourceTree = "<group>"; };
+		2090CB46206550BE00F6D490 /* UIRefreshControl+Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Block.swift"; sourceTree = "<group>"; };
 		24CB58AB234816A7A1F2BFE4FC10D8C3 /* PagingDataControllerExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PagingDataControllerExtension.xcconfig; sourceTree = "<group>"; };
 		25ECE93BD4A085AC31988C3A55AA58E7 /* Number++.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Number++.swift"; path = "SiFUtilities/Classes/Number++.swift"; sourceTree = "<group>"; };
 		2928DB8107D401C007928BB65F271BDD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,7 +151,6 @@
 		36F1EEBAA04DA916B756CFA3254B2C57 /* UIViewController+Runtime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Runtime.swift"; path = "SiFUtilities/Classes/UIViewController+Runtime.swift"; sourceTree = "<group>"; };
 		37349449D09096A4C3B6BE4E0AD0F4D2 /* Pods-PagingDataControllerExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PagingDataControllerExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
 		391D913BC4234FF50A4548A8FA2343D2 /* Pods-PagingDataControllerExtension_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PagingDataControllerExtension_Example.modulemap"; sourceTree = "<group>"; };
-		407F2E7591F2EAA0EB4CF324E646B814 /* UIViewController+PagingData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+PagingData.swift"; path = "PagingDataControllerExtension/Classes/UIViewController+PagingData.swift"; sourceTree = "<group>"; };
 		46F7ECCA5C17E74B7E1ACA12F6CBDFB1 /* PagingDataControllerExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PagingDataControllerExtension.modulemap; sourceTree = "<group>"; };
 		4702F9CED07E931F58E522A615CD0696 /* UIViewController+Overlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Overlay.swift"; path = "SiFUtilities/Classes/UIViewController+Overlay.swift"; sourceTree = "<group>"; };
 		4F2D603EBBCD92FF6B1139F752EDF9E5 /* String+Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Validation.swift"; path = "SiFUtilities/Classes/String+Validation.swift"; sourceTree = "<group>"; };
@@ -294,6 +294,16 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		2090CB43206550BE00F6D490 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2090CB44206550BE00F6D490 /* UIViewController+PagingData.swift */,
+				2090CB46206550BE00F6D490 /* UIRefreshControl+Block.swift */,
+			);
+			name = Classes;
+			path = PagingDataControllerExtension/Classes;
+			sourceTree = "<group>";
+		};
 		3A90E79B77B5D5B4C38E0B617033C01E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,8 +374,7 @@
 		8B3C85AAB5DAB4BE03356AC54BB853CF /* PagingDataControllerExtension */ = {
 			isa = PBXGroup;
 			children = (
-				407F2E7591F2EAA0EB4CF324E646B814 /* UIViewController+PagingData.swift */,
-				2090CB3E2065498100F6D490 /* UIRefreshControl+Block.swift */,
+				2090CB43206550BE00F6D490 /* Classes */,
 				4AB307CF0AD3FD96A981C8FF743F388D /* Pod */,
 				92E007312BF4DF8B7539D93318180D19 /* Support Files */,
 			);
@@ -702,9 +711,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2090CB40206549DC00F6D490 /* UIRefreshControl+Block.swift in Sources */,
+				2090CB48206550BE00F6D490 /* UIRefreshControl+Block.swift in Sources */,
+				2090CB47206550BE00F6D490 /* UIViewController+PagingData.swift in Sources */,
 				A1F1B284897FAF9C400A76D2C892B014 /* PagingDataControllerExtension-dummy.m in Sources */,
-				C0F3B007927027741D86A69648A0C1D7 /* UIViewController+PagingData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
