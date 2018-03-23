@@ -9,9 +9,14 @@
 import UIKit
 import PagingDataController
 import PagingDataControllerExtension
+import SVPullToRefresh
 
 struct Provider: PagingProviderProtocol {
-    func loadData(parameters: String?, page: Int, completion: (([String], Error?) -> ())?) {}
+    func loadData(parameters: String?, page: Int, completion: (([String], Error?) -> ())?) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+            completion?([], nil)
+        }
+    }
 }
 
 class ViewController: UIViewController, PagingControllerProtocol {
@@ -22,13 +27,11 @@ class ViewController: UIViewController, PagingControllerProtocol {
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.red
         
-        setupForPaging()
-        
+        setupForPaging(nativeRefreshControl: true, firstLoadstyle: .autoTrigger)
     }
     
     @IBAction func buttonClicked(_ sender: AnyObject) {
         print("Clicked")
-        
     }
     
 }
