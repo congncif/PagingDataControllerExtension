@@ -1,6 +1,7 @@
 # PagingDataControllerExtension
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/Jg05D"><a href="//imgur.com/Jg05D"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<img src="https://i.imgur.com/ATK9hZV.png"/>
+[![CI Status](http://img.shields.io/travis/NGUYEN CHI CONG/PagingDataControllerExtension.svg?style=flat)](https://travis-ci.org/NGUYEN CHI CONG/PagingDataControllerExtension)
 [![Version](https://img.shields.io/cocoapods/v/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
 [![License](https://img.shields.io/cocoapods/l/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
 [![Platform](https://img.shields.io/cocoapods/p/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
@@ -34,7 +35,7 @@ PagingDataControllerExtension is available under the MIT license. See the LICENS
 
 ## How it works?
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/4heFr"><a href="//imgur.com/4heFr"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<img src="https://i.imgur.com/ExwdwgR.jpg"/>
 
 **Provider** is a component which handles loading data by page. A list of objects or error will be returned once it is finished in processing.
 
@@ -102,4 +103,4 @@ override func viewDidFinishLayout() {
 
 5. Build & Run to enjoy
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/ZWXpn"><a href="//imgur.com/ZWXpn"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<img src="https://i.imgur.com/PFa9mJ2.png"/>
