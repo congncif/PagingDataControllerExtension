@@ -1,6 +1,6 @@
 {
   "name": "PagingDataControllerExtension",
-  "version": "0.1.4",
+  "version": "1.0.1",
   "summary": "This is Extensions help you to implement PagingDataController",
   "description": "Install PagingDataControllerExtension and setupScrollViewForPaging -> All done.",
   "homepage": "https://github.com/congncif/PagingDataControllerExtension",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/congncif/PagingDataControllerExtension.git",
-    "tag": "0.1.4"
+    "tag": "1.0.1"
   },
   "social_media_url": "https://twitter.com/congncif",
   "platforms": {

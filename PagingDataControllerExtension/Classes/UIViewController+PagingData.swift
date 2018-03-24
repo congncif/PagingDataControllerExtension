@@ -142,22 +142,26 @@ extension PagingControllerProtocol where Self: UIViewController {
         
         switch firstLoadstyle {
         case .autoTrigger:
-            if nativeRefreshControl {
-                if let control = pagingScrollView.viewWithTag(kRefreshControlTag) as? UIRefreshControl {
-                    control.beginRefreshing()
-                    loadFirstPageWithCompletion({ [weak self] in
-                        self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!, end: control.endRefreshing)
-                    })
-                } else {
-                    print("*** Refresh control not found ***")
-                }
-            } else {
-                pagingScrollView.triggerPullToRefresh()
-            }
+            triggerPull(nativeRefreshControl: nativeRefreshControl)
         case .progressHUD:
             loadDataFirstPage()
         default:
             break
+        }
+    }
+    
+    public func triggerPull(nativeRefreshControl: Bool = false) {
+        if nativeRefreshControl {
+            if let control = pagingScrollView.viewWithTag(kRefreshControlTag) as? UIRefreshControl {
+                control.beginRefreshing()
+                loadFirstPageWithCompletion({ [weak self] in
+                    self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!, end: control.endRefreshing)
+                })
+            } else {
+                print("*** Refresh control not found ***")
+            }
+        } else {
+            pagingScrollView.triggerPullToRefresh()
         }
     }
     

@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2090CB3B206540FC00F6D490 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2090CB3A206540FC00F6D490 /* Launch Screen.storyboard */; };
+		20DF66FC2065FE8700B15235 /* GithubUsersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF66FA2065FE8700B15235 /* GithubUsersProvider.swift */; };
+		20DF66FD2065FE8700B15235 /* GithubUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF66FB2065FE8700B15235 /* GithubUsersViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		9FF1201D1D9CE81C001DED34 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF1201C1D9CE81C001DED34 /* Default-568h@2x.png */; };
@@ -20,12 +21,13 @@
 		10F1D58AD82585DC2BE1731C /* PagingDataControllerExtension.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PagingDataControllerExtension.podspec; path = ../PagingDataControllerExtension.podspec; sourceTree = "<group>"; };
 		16FD0BFEE953E3A62B48CDC0 /* Pods-PagingDataControllerExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagingDataControllerExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2090CB3A206540FC00F6D490 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		20DF66FA2065FE8700B15235 /* GithubUsersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUsersProvider.swift; sourceTree = "<group>"; };
+		20DF66FB2065FE8700B15235 /* GithubUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUsersViewController.swift; sourceTree = "<group>"; };
 		35906470EEE2009B5B8D6EB4 /* Pods-PagingDataControllerExtension_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagingDataControllerExtension_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PagingDataControllerExtension_Tests/Pods-PagingDataControllerExtension_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4E0AE1F2A4C6BC411D6D9844 /* Pods-PagingDataControllerExtension_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagingDataControllerExtension_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* PagingDataControllerExtension_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagingDataControllerExtension_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		73BF68D6FA142A941C6E4965 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -72,7 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				20DF66FB2065FE8700B15235 /* GithubUsersViewController.swift */,
+				20DF66FA2065FE8700B15235 /* GithubUsersProvider.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				2090CB3A206540FC00F6D490 /* Launch Screen.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -200,15 +203,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataControllerExtension/PagingDataControllerExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SiFUtilities/SiFUtilities.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingDataController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingDataControllerExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SiFUtilities.framework",
 			);
@@ -257,7 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				20DF66FC2065FE8700B15235 /* GithubUsersProvider.swift in Sources */,
+				20DF66FD2065FE8700B15235 /* GithubUsersViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
