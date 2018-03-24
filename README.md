@@ -105,4 +105,4 @@ override func viewDidFinishLayout() {
 
 5. Build & Run to enjoy
 
-<img src="https://i.imgur.com/PFa9mJ2.png"/>
+<img src="https://i.imgur.com/PFa9mJ2.png" width=375/>
