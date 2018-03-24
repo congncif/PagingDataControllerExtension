@@ -1,10 +1,12 @@
 # PagingDataControllerExtension
 
 <img src="https://i.imgur.com/ATK9hZV.png"/>
-[![CI Status](http://img.shields.io/travis/NGUYEN CHI CONG/PagingDataControllerExtension.svg?style=flat)](https://travis-ci.org/NGUYEN CHI CONG/PagingDataControllerExtension)
+
+
 [![Version](https://img.shields.io/cocoapods/v/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
 [![License](https://img.shields.io/cocoapods/l/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
 [![Platform](https://img.shields.io/cocoapods/p/PagingDataControllerExtension.svg?style=flat)](http://cocoapods.org/pods/PagingDataControllerExtension)
+
 
 **PagingDataController** is a library for implementing loading data by page (pagination) easily. It provides a short setup via few lines of code. You will not need to worry about page management, when to load the next page's data, and so on.
 
