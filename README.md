@@ -41,7 +41,7 @@ PagingDataControllerExtension is available under the MIT license. See the LICENS
 
 **Provider** is a component which handles loading data by page. A list of objects or error will be returned once it is finished in processing.
 
-**DataSource** keeps all of data which loaded by provider and arrange them in order of page.
+**DataSource** keeps all of data which loaded by provider and arranges them in order of page.
 
 A controller which implements `PagingDataController` includes a provider and a dataSource itself. While `dataSource` is injected automatically, `provider` needs to be declared explicit.
 
