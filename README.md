@@ -95,7 +95,7 @@ Copy this method and put it below `viewDidLoad()`:
 
 ```swift
 override func viewDidFinishLayout() {
-	super.viewDidFinishLayout()
+    super.viewDidFinishLayout()
     setupForPaging()
 }
 ```
