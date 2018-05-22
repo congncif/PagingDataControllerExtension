@@ -13,6 +13,18 @@ import SVPullToRefresh
 
 public typealias PullHandler = ((() -> Swift.Void)?) -> Swift.Void
 
+extension UIScrollView {
+    public var nativeRefreshControl: UIRefreshControl? {
+        if #available(iOS 10.0, *) {
+            return refreshControl
+        } else {
+            return subviews.filter { (subview) -> Bool in
+                subview is UIRefreshControl
+            }.first as? UIRefreshControl
+        }
+    }
+}
+
 extension UIViewController: PageDataSourceDelegate {
     @objc open var instantReloadContent: Bool {
         return false
@@ -39,9 +51,10 @@ extension UIViewController: PageDataSourceDelegate {
     public func setupPullToRefreshView(pullHandler: @escaping PullHandler) {
         pagingScrollView.addPullToRefresh { [weak self] in
             pullHandler({ [weak self] in
-                self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!,
-                                                     end: { [weak self] in
-                                                         self?.pagingScrollView.pullToRefreshView.stopAnimating()
+                guard let this = self else { return }
+                this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent,
+                                                    end: { [weak self] in
+                                                        self?.pagingScrollView.pullToRefreshView.stopAnimating()
                 })
             })
         }
@@ -50,9 +63,10 @@ extension UIViewController: PageDataSourceDelegate {
     public func setupInfiniteScrollingView(pullHanlder: @escaping PullHandler) {
         pagingScrollView.addInfiniteScrolling { [weak self] in
             pullHanlder({ [weak self] in
-                self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!,
-                                                     end: { [weak self] in
-                                                         self?.pagingScrollView.infiniteScrollingView.stopAnimating()
+                guard let this = self else { return }
+                this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent,
+                                                    end: { [weak self] in
+                                                        self?.pagingScrollView.infiniteScrollingView.stopAnimating()
                 })
             })
         }
@@ -62,18 +76,13 @@ extension UIViewController: PageDataSourceDelegate {
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    @objc open func pageDataSourceDidChanged(hasMoreFlag: Bool, changed: Bool) {
+    @objc open func pageDataSourceDidChanged(hasNextPage: Bool, infiniteScrollingShouldChange changed: Bool) {
         guard changed else {
             return
         }
-        let delayTime = DispatchTime.now() + Double(Int64(0.25 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        let delayTime = DispatchTime.now() + 0.25
         DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
-            
-            if hasMoreFlag == false {
-                self?.pagingScrollView.showsInfiniteScrolling = false
-            } else {
-                self?.pagingScrollView.showsInfiniteScrolling = true
-            }
+            self?.pagingScrollView.showsInfiniteScrolling = hasNextPage
         }
     }
     
@@ -92,8 +101,6 @@ extension UIViewController: PageDataSourceDelegate {
     case progressHUD // Heads-up Display
 }
 
-let kRefreshControlTag = 1005
-
 extension PagingControllerProtocol where Self: UIViewController {
     public func setupForPagingDataSource() {
         dataSource.settings = PageDataSettings(pageSize: provider.pageSize)
@@ -104,20 +111,26 @@ extension PagingControllerProtocol where Self: UIViewController {
         if nativeControl {
             let refreshControl = UIRefreshControl(actionHandler: { [weak self] control in
                 self?.loadFirstPageWithCompletion({ [weak self] in
-                    self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!,
-                                                         end: {
+                    guard let this = self else { return }
+                    this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent,
+                                                        end: {
                                                             control.endRefreshing()
                     })
                 })
             })
-            refreshControl.tag = kRefreshControlTag
-            pagingScrollView.addSubview(refreshControl)
+            
+            if #available(iOS 10.0, *) {
+                pagingScrollView.refreshControl = refreshControl
+            } else {
+                pagingScrollView.addSubview(refreshControl)
+            }
         } else {
             pagingScrollView.addPullToRefresh { [weak self] in
                 self?.loadFirstPageWithCompletion({ [weak self] in
-                    self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!,
-                                                         end: { [weak self] in
-                                                             self?.pagingScrollView.pullToRefreshView.stopAnimating()
+                    guard let this = self else { return }
+                    this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent,
+                                                        end: { [weak self] in
+                                                            self?.pagingScrollView.pullToRefreshView.stopAnimating()
                     })
                 })
             }
@@ -127,12 +140,15 @@ extension PagingControllerProtocol where Self: UIViewController {
     public func setupForPullUpToLoadMore() {
         pagingScrollView.addInfiniteScrolling { [weak self] in
             self?.loadNextPageWithCompletion({ [weak self] in
-                self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!,
-                                                     end: { [weak self] in
-                                                         self?.pagingScrollView.infiniteScrollingView.stopAnimating()
+                guard let this = self else { return }
+                this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent,
+                                                    end: { [weak self] in
+                                                        self?.pagingScrollView.infiniteScrollingView.stopAnimating()
                 })
             })
         }
+        
+        pagingScrollView.showsInfiniteScrolling = dataSource.hasMore
     }
     
     public func setupForPaging(nativeRefreshControl: Bool = false, firstLoadstyle: PagingFirstLoadStyle = .progressHUD) {
@@ -152,10 +168,11 @@ extension PagingControllerProtocol where Self: UIViewController {
     
     public func triggerPull(nativeRefreshControl: Bool = false) {
         if nativeRefreshControl {
-            if let control = pagingScrollView.viewWithTag(kRefreshControlTag) as? UIRefreshControl {
+            if let control = pagingScrollView.nativeRefreshControl {
                 control.beginRefreshing()
                 loadFirstPageWithCompletion({ [weak self] in
-                    self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!, end: control.endRefreshing)
+                    guard let this = self else { return }
+                    this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent, end: control.endRefreshing)
                 })
             } else {
                 print("*** Refresh control not found ***")
@@ -168,7 +185,8 @@ extension PagingControllerProtocol where Self: UIViewController {
     public func loadDataFirstPage() {
         startLoading()
         loadFirstPageWithCompletion({ [weak self] in
-            self?.pagingScrollView.reloadContent(instantReloadContent: (self?.instantReloadContent)!, end: self?.stopLoading)
+            guard let this = self else { return }
+            this.pagingScrollView.reloadContent(instantReloadContent: this.instantReloadContent, end: this.stopLoading)
         })
     }
 }

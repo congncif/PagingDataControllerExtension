@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		10F1D58AD82585DC2BE1731C /* PagingDataControllerExtension.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PagingDataControllerExtension.podspec; path = ../PagingDataControllerExtension.podspec; sourceTree = "<group>"; };
+		10F1D58AD82585DC2BE1731C /* PagingDataControllerExtension.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PagingDataControllerExtension.podspec; path = ../PagingDataControllerExtension.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		16FD0BFEE953E3A62B48CDC0 /* Pods-PagingDataControllerExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagingDataControllerExtension_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2090CB3A206540FC00F6D490 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		20DF66FA2065FE8700B15235 /* GithubUsersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUsersProvider.swift; sourceTree = "<group>"; };
@@ -135,7 +135,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				6391F7BC9510783EEDB99173 /* [CP] Embed Pods Frameworks */,
-				A6FE8578715A2A1CA5C18D63 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,21 +239,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6FE8578715A2A1CA5C18D63 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

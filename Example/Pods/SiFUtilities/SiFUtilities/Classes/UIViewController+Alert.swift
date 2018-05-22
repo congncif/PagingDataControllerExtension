@@ -11,31 +11,99 @@ import UIKit
 
 extension UIViewController {
     open func confirm(title: String? = nil,
-                        message: String? = nil,
-                        cancelTitle: String = LocalizedString("Cancel"),
-                        cancelHandler: @escaping ()->Void = {},
-                        confirmedTitle: String = LocalizedString("OK"),
-                        confirmedHandler: @escaping ()->Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                      message: String?,
+                      style: UIAlertControllerStyle = .alert,
+                      dismissOthers: Bool = false,
+                      cancelTitle: String = "Cancel".localized,
+                      cancelHandler: (() -> Void)? = nil,
+                      confirmedTitle: String = "OK".localized,
+                      confirmedHandler: @escaping () -> Void) {
+        if let alert = self as? UIAlertController, let presenting = presentingViewController, dismissOthers {
+            alert.dismiss(animated: false, completion: {
+                presenting.confirm(title: title, message: message, style: style, dismissOthers: dismissOthers, cancelTitle: cancelTitle, cancelHandler: cancelHandler, confirmedTitle: confirmedTitle, confirmedHandler: confirmedHandler)
+            })
+            return
+        }
         
-        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: { _ in
-            cancelHandler()
-        }))
-        alert.addAction(UIAlertAction(title: confirmedTitle, style: .default, handler: { (_) in
-            confirmedHandler()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        let completion = { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+            
+            alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: { _ in
+                cancelHandler?()
+            }))
+            alert.addAction(UIAlertAction(title: confirmedTitle, style: .default, handler: { _ in
+                confirmedHandler()
+            }))
+            self?.present(alert, animated: true, completion: nil)
+        }
+        
+        if let presented = presentedViewController, let alert = presented as? UIAlertController {
+            if dismissOthers {
+                alert.dismiss(animated: false, completion: completion)
+            } else {
+                print("☞ Alert is presented on view controller \(self). Set up dismissOthers = true to hide current alert before present new alert")
+                return
+            }
+        } else {
+            completion()
+        }
     }
     
     open func notify(title: String? = nil,
-                       message: String? = nil,
-                       buttonTitle: String = LocalizedString("OK"),
-                       handler: @escaping ()->Void = {}) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                     message: String?,
+                     style: UIAlertControllerStyle = .alert,
+                     dismissOthers: Bool = false,
+                     buttonTitle: String = "OK".localized,
+                     handler: (() -> Void)? = nil) {
+        if let alert = self as? UIAlertController, let presenting = presentingViewController, dismissOthers {
+            alert.dismiss(animated: false, completion: {
+                presenting.notify(title: title, message: message, style: style, dismissOthers: dismissOthers, buttonTitle: buttonTitle, handler: handler)
+            })
+            return
+        }
         
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: { _ in
-            handler()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        let completion = { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+            
+            alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: { _ in
+                handler?()
+            }))
+            self?.present(alert, animated: true, completion: nil)
+        }
+        
+        if let presented = presentedViewController, let alert = presented as? UIAlertController {
+            if dismissOthers {
+                alert.dismiss(animated: false, completion: completion)
+            } else {
+                print("☞ Alert is presented on view controller \(self). Set up dismissOthers = true to hide current alert before present new alert")
+                return
+            }
+        } else {
+            completion()
+        }
+    }
+}
+
+extension UIAlertController {
+    open class func confirm(title: String? = nil,
+                            message: String?,
+                            style: UIAlertControllerStyle = .alert,
+                            dismissOthers: Bool = false,
+                            cancelTitle: String = "Cancel".localized,
+                            cancelHandler: (() -> Void)? = nil,
+                            confirmedTitle: String = "OK".localized,
+                            confirmedHandler: @escaping () -> Void) {
+        let viewController = UIApplication.topViewController()
+        viewController?.confirm(title: title, message: message, style: style, dismissOthers: dismissOthers, cancelTitle: cancelTitle, cancelHandler: cancelHandler, confirmedTitle: confirmedTitle, confirmedHandler: confirmedHandler)
+    }
+    
+    open class func notify(title: String? = nil,
+                           message: String?,
+                           style: UIAlertControllerStyle = .alert,
+                           dismissOthers: Bool = false,
+                           buttonTitle: String = "OK".localized,
+                           handler: (() -> Void)? = nil) {
+        let viewController = UIApplication.topViewController()
+        viewController?.notify(title: title, message: message, style: style, dismissOthers: dismissOthers, buttonTitle: buttonTitle, handler: handler)
     }
 }
