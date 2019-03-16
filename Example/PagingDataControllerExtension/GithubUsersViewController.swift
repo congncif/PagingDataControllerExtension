@@ -6,13 +6,15 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-import UIKit
 import PagingDataController
 import PagingDataControllerExtension
 import SDWebImage
 import SiFUtilities
+import UIKit
 
-class GithubUsersViewController: UIViewController, UITableViewDataSource, PagingControllerProtocol {
+extension GithubUsersViewController: PagingControllerViewable, PageDataSourceDelegate {}
+
+class GithubUsersViewController: UIViewController, UITableViewDataSource, PagingControllerProtocol, PagingControllerConfigurable {
     @IBOutlet var tableView: UITableView!
     
     // Provider definition
@@ -38,7 +40,7 @@ class GithubUsersViewController: UIViewController, UITableViewDataSource, Paging
     }
     
     func errorWarningForPage(_ page: Int, error: Error) {
-        print(error)
+        notify(message: error.localizedDescription)
     }
     
     // MARK: - Actions

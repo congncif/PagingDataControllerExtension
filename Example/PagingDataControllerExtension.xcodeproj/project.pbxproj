@@ -201,8 +201,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingDataControllerExtension/PagingDataControllerExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -212,6 +213,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingDataController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingDataControllerExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -220,7 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PagingDataControllerExtension_Example/Pods-PagingDataControllerExtension_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		66B77132B898721F04F205E5 /* [CP] Check Pods Manifest.lock */ = {
