@@ -73,6 +73,10 @@ extension PagingControllerViewable where Self: UIViewController {
 
 extension PagingControllerViewable where Self: PageDataSourceDelegate {
     public func pageDataSourceDidChanged(hasNextPage: Bool, infiniteScrollingShouldChange changed: Bool) {
+        pageDataSourceDidUpdate(hasNextPage: hasNextPage, infiniteScrollingShouldChange: changed)
+    }
+    
+    public func pageDataSourceDidUpdate(hasNextPage: Bool, infiniteScrollingShouldChange changed: Bool) {
         guard changed else { return }
         let delayTime = DispatchTime.now() + 0.25
         DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
