@@ -13,19 +13,19 @@ public protocol PagingControllerConfigurable: AnyObject {
 }
 
 extension PagingControllerConfigurable {
-    var instantReloadContent: Bool {
+    public var instantReloadContent: Bool {
         return pagingView.instantReloadContent
     }
 
-    var pagingScrollView: UIScrollView {
+    public var pagingScrollView: UIScrollView {
         return pagingView.pagingScrollView
     }
 
-    func startLoading() {
+    public func startLoading() {
         pagingView.startLoading()
     }
 
-    func stopLoading() {
+    public func stopLoading() {
         pagingView.stopLoading()
     }
 }
