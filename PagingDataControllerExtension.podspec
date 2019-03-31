@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'PagingDataControllerExtension'
   s.version          = '2.0.1'
   s.summary          = 'This is Extensions help you to implement PagingDataController'
+  s.swift_version    = '4.2'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
