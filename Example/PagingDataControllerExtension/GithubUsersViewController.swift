@@ -30,6 +30,7 @@ class GithubUsersViewController: UIViewController, UITableViewDataSource, Paging
      ******************************************/
     override func viewDidFinishInitialLayout() {
         setupForPaging()
+        setupPagingDataSource(delegate: self)
     }
     
     // MARK: - Custom

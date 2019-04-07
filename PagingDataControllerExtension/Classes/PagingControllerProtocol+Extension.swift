@@ -91,7 +91,6 @@ extension PagingControllerProtocol {
     public func setupPagingControlling(pagingView: PagingControllerViewable,
                                        nativeRefreshControl: Bool = false,
                                        firstLoadingStyle style: PagingFirstLoadingStyle = .progressHUD) {
-        setupPagingDataSource(delegate: pagingView as? PageDataSourceDelegate)
         setupPullDownToRefresh(pagingView: pagingView, nativeControl: nativeRefreshControl)
         setupPullUpToLoadMore(pagingView: pagingView)
         

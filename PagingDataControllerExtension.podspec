@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PagingDataControllerExtension'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'This is Extensions help you to implement PagingDataController'
   s.swift_version    = '4.2'
 
