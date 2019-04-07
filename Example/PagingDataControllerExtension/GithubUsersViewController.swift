@@ -47,7 +47,7 @@ class GithubUsersViewController: UIViewController, UITableViewDataSource, Paging
     //////////////////////////////////////////////////////////////////////////////////////
     @IBAction func refreshButtonDidTapped(_ sender: AnyObject) {
         self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-        loadDataFirstPage()
+        refreshPaging()
     }
     
     /****************************

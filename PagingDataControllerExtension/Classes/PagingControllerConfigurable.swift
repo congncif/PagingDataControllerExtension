@@ -12,6 +12,7 @@ public protocol PagingControllerConfigurable: AnyObject {
     var pagingView: PagingControllerViewable { get }
     
     func setupForPaging()
+    func refreshPaging()
 }
 
 extension PagingControllerConfigurable {

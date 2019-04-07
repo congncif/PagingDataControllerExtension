@@ -15,92 +15,91 @@ import UIKit
     case progressHUD // Heads-up Display
 }
 
-extension PagingControllerConfigurable where Self: PagingControllerProtocol {
-    public func setupForPagingDataSource() {
+extension PagingControllerProtocol {
+    public func setupPagingDataSource(delegate: PageDataSourceDelegate?) {
         dataSource.settings = PageDataSettings(pageSize: provider.pageSize)
-        if let _dataSourceDelegate = pagingView as? PageDataSourceDelegate {
-            dataSource.delegate = _dataSourceDelegate
-        }
+        dataSource.delegate = delegate
     }
     
-    public func setupForPullDownToRefresh(nativeControl: Bool = false) {
+    public func setupPullDownToRefresh(pagingView: PagingControllerViewable, nativeControl: Bool = false) {
         if nativeControl {
             let refreshControl = UIRefreshControl { [weak self] control in
-                self?.loadFirstPageWithCompletion { [weak self] in
-                    guard let self = self else { return }
-                    self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent) {
+                self?.loadFirstPageWithCompletion { [weak pagingView] in
+                    guard let pagingView = pagingView else { return }
+                    pagingView.pagingScrollView.reloadContent(instantReloadContent: pagingView.instantReloadContent) {
                         control.endRefreshing()
                     }
                 }
             }
             
             if #available(iOS 10.0, *) {
-                pagingScrollView.refreshControl = refreshControl
+                pagingView.pagingScrollView.refreshControl = refreshControl
             } else {
-                pagingScrollView.addSubview(refreshControl)
+                pagingView.pagingScrollView.addSubview(refreshControl)
             }
         } else {
-            pagingScrollView.addPullToRefresh { [weak self] in
-                self?.loadFirstPageWithCompletion { [weak self] in
-                    guard let self = self else { return }
-                    self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent) { [weak self] in
-                        self?.pagingScrollView.pullToRefreshView.stopAnimating()
+            pagingView.pagingScrollView.addPullToRefresh { [weak self] in
+                self?.loadFirstPageWithCompletion { [weak pagingView] in
+                    guard let pagingView = pagingView else { return }
+                    pagingView.pagingScrollView.reloadContent(instantReloadContent: pagingView.instantReloadContent) { [weak pagingView] in
+                        pagingView?.pagingScrollView.pullToRefreshView.stopAnimating()
                     }
                 }
             }
         }
     }
     
-    public func setupForPullUpToLoadMore() {
-        pagingScrollView.addInfiniteScrolling { [weak self] in
-            self?.loadNextPageWithCompletion { [weak self] in
-                guard let self = self else { return }
-                self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent) { [weak self] in
-                    self?.pagingScrollView.infiniteScrollingView.stopAnimating()
+    public func setupPullUpToLoadMore(pagingView: PagingControllerViewable) {
+        pagingView.pagingScrollView.addInfiniteScrolling { [weak self] in
+            self?.loadNextPageWithCompletion { [weak pagingView] in
+                guard let pagingView = pagingView else { return }
+                pagingView.pagingScrollView.reloadContent(instantReloadContent: pagingView.instantReloadContent) { [weak pagingView] in
+                    pagingView?.pagingScrollView.infiniteScrollingView.stopAnimating()
                 }
             }
         }
         
-        pagingScrollView.showsInfiniteScrolling = dataSource.hasMore
+        pagingView.pagingScrollView.showsInfiniteScrolling = dataSource.hasMore
     }
     
-    public func triggerPull(nativeRefreshControl: Bool = false) {
+    public func triggerRefresh(pagingView: PagingControllerViewable, nativeRefreshControl: Bool = false) {
         if nativeRefreshControl {
-            if let control = pagingScrollView.nativeRefreshControl {
+            if let control = pagingView.pagingScrollView.nativeRefreshControl {
                 control.beginRefreshing()
-                loadFirstPageWithCompletion { [weak self] in
-                    guard let self = self else { return }
-                    self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent,
-                                                        end: control.endRefreshing)
+                loadFirstPageWithCompletion { [weak pagingView] in
+                    guard let pagingView = pagingView else { return }
+                    pagingView.pagingScrollView.reloadContent(instantReloadContent: pagingView.instantReloadContent,
+                                                              end: control.endRefreshing)
                 }
             } else {
                 print("*** Refresh control not found ***")
             }
         } else {
-            pagingScrollView.triggerPullToRefresh()
+            pagingView.pagingScrollView.triggerPullToRefresh()
         }
     }
     
-    public func loadDataFirstPage() {
-        startLoading()
-        loadFirstPageWithCompletion { [weak self] in
-            guard let self = self else { return }
-            self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent,
-                                                end: self.stopLoading)
+    public func loadDataFirstPage(pagingView: PagingControllerViewable) {
+        pagingView.startLoading()
+        loadFirstPageWithCompletion { [weak pagingView] in
+            guard let pagingView = pagingView else { return }
+            pagingView.pagingScrollView.reloadContent(instantReloadContent: pagingView.instantReloadContent,
+                                                      end: pagingView.stopLoading)
         }
     }
     
-    public func setupPagingControlling(nativeRefreshControl: Bool = false,
+    public func setupPagingControlling(pagingView: PagingControllerViewable,
+                                       nativeRefreshControl: Bool = false,
                                        firstLoadingStyle style: PagingFirstLoadingStyle = .progressHUD) {
-        setupForPagingDataSource()
-        setupForPullDownToRefresh(nativeControl: nativeRefreshControl)
-        setupForPullUpToLoadMore()
+        setupPagingDataSource(delegate: pagingView as? PageDataSourceDelegate)
+        setupPullDownToRefresh(pagingView: pagingView, nativeControl: nativeRefreshControl)
+        setupPullUpToLoadMore(pagingView: pagingView)
         
         switch style {
         case .autoTrigger:
-            triggerPull(nativeRefreshControl: nativeRefreshControl)
+            triggerRefresh(pagingView: pagingView, nativeRefreshControl: nativeRefreshControl)
         case .progressHUD:
-            loadDataFirstPage()
+            loadDataFirstPage(pagingView: pagingView)
         default:
             break
         }
@@ -109,7 +108,11 @@ extension PagingControllerConfigurable where Self: PagingControllerProtocol {
 
 extension PagingControllerConfigurable where Self: PagingControllerProtocol {
     public func setupForPaging() {
-        setupPagingControlling(nativeRefreshControl: true)
+        setupPagingControlling(pagingView: pagingView, nativeRefreshControl: true, firstLoadingStyle: .progressHUD)
+    }
+    
+    public func refreshPaging() {
+        loadDataFirstPage(pagingView: pagingView)
     }
 }
 
