@@ -14,6 +14,7 @@
 		08FD7C8286A6F5F675B5CD74CD324625 /* UIImage+ForceDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A662687A10DD368E39350EAF867B170 /* UIImage+ForceDecode.m */; };
 		0A39AF55285A3A4F7CBABB6D822FA4A3 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8926D5FDA6C69098BEF74C84AD100763 /* Alamofire.swift */; };
 		0ADF852A225A20BD00645322 /* AbstractPageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF8529225A20BD00645322 /* AbstractPageProvider.swift */; };
+		0ADF8532225A4F1C00645322 /* PageDataSourceDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF8531225A4F1C00645322 /* PageDataSourceDelegateProxy.swift */; };
 		0CDE042EF5D02A110592B3BCE5664FDA /* Localize-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 214CE290801B4482B24B69CC57F6FC6F /* Localize-Swift-dummy.m */; };
 		0FAA4C4EE8975D9B15DB958587C0823D /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = F17B9D1F8E6464CFB032D3B2D81D1BC9 /* SDWebImageCompat.m */; };
 		10D2369F601EFE2AAAB81EF603AFA725 /* SDWebImageCodersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 587E5AD13D8B80C0EF53A5B12E18FF4F /* SDWebImageCodersManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -285,6 +286,7 @@
 		0866E57ADE311DED5B9CA23BF57626CB /* UIImage+MemoryCacheCost.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MemoryCacheCost.m"; path = "SDWebImage/UIImage+MemoryCacheCost.m"; sourceTree = "<group>"; };
 		0A3C80647F3B630D6FAF666C3A8357FB /* UISearchBar+Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UISearchBar+Localize.swift"; path = "Localize/UISearchBar+Localize.swift"; sourceTree = "<group>"; };
 		0ADF8529225A20BD00645322 /* AbstractPageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AbstractPageProvider.swift; path = PagingDataControllerExtension/Classes/AbstractPageProvider.swift; sourceTree = "<group>"; };
+		0ADF8531225A4F1C00645322 /* PageDataSourceDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageDataSourceDelegateProxy.swift; path = PagingDataControllerExtension/Classes/PageDataSourceDelegateProxy.swift; sourceTree = "<group>"; };
 		0D5AFA8D3A793BC37F22FEF163243F51 /* PagingDataController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PagingDataController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DA4B394E3875F5F387C164D6114CA16 /* UIViewController+Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Localize.swift"; path = "Localize/UIViewController+Localize.swift"; sourceTree = "<group>"; };
 		0DBE45F7F682E497508C11F465B67BC6 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -692,14 +694,15 @@
 		61443D8EE08FD1DC438C0E95790A494B /* PagingDataControllerExtension */ = {
 			isa = PBXGroup;
 			children = (
+				0ADF8529225A20BD00645322 /* AbstractPageProvider.swift */,
 				023FBB563C26855AA65B2D3781BD8336 /* PagingControllerConfigurable.swift */,
 				D74E3D748338854100593E873CE2F319 /* PagingControllerProtocol+Extension.swift */,
 				07C8414FDB4B8DA5D903D1315314315D /* PagingControllerViewable.swift */,
 				F1AB7C71CE529BCD676E0E2A29A94E78 /* UIRefreshControl+Block.swift */,
 				5BEDC397DB8762E581C34729A7CA43BA /* UIScrollView+RefreshControl.swift */,
+				0ADF8531225A4F1C00645322 /* PageDataSourceDelegateProxy.swift */,
 				69E6561B92625D9760A0CC597473D98A /* Pod */,
 				FB44C37960021A8E25AF3F74276C647D /* Support Files */,
-				0ADF8529225A20BD00645322 /* AbstractPageProvider.swift */,
 			);
 			name = PagingDataControllerExtension;
 			path = ../..;
@@ -1460,6 +1463,7 @@
 				A92F06DB54A1ACB945312CA495A05E0A /* PagingControllerViewable.swift in Sources */,
 				55A6A03393ECA517B2100E7122F5CB0A /* PagingDataControllerExtension-dummy.m in Sources */,
 				0ADF852A225A20BD00645322 /* AbstractPageProvider.swift in Sources */,
+				0ADF8532225A4F1C00645322 /* PageDataSourceDelegateProxy.swift in Sources */,
 				1515759C8358868F74F2C30C678B7E21 /* UIRefreshControl+Block.swift in Sources */,
 				742B5F4A838549B0229D909C3BDD8F81 /* UIScrollView+RefreshControl.swift in Sources */,
 			);
