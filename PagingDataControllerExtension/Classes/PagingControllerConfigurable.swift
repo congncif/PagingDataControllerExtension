@@ -10,6 +10,8 @@ import UIKit
 
 public protocol PagingControllerConfigurable: AnyObject {
     var pagingView: PagingControllerViewable { get }
+    
+    func setupForPaging()
 }
 
 extension PagingControllerConfigurable {

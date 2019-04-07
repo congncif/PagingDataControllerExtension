@@ -28,9 +28,8 @@ class GithubUsersViewController: UIViewController, UITableViewDataSource, Paging
     /******************************************
      Copy this method into your view controller
      ******************************************/
-    override func viewDidFinishLayout() {
-        super.viewDidFinishLayout()
-        setupForPaging(nativeRefreshControl: true)
+    override func viewDidFinishInitialLayout() {
+        setupForPaging()
     }
     
     // MARK: - Custom

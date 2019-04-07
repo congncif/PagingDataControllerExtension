@@ -9,13 +9,20 @@ import Foundation
 import PagingDataController
 import UIKit
 
-@objc public enum PagingFirstLoadStyle: Int {
+@objc public enum PagingFirstLoadingStyle: Int {
     case none
     case autoTrigger
     case progressHUD // Heads-up Display
 }
 
-extension PagingControllerProtocol where Self: PagingControllerConfigurable {
+extension PagingControllerConfigurable where Self: PagingControllerProtocol {
+    public func setupForPagingDataSource() {
+        dataSource.settings = PageDataSettings(pageSize: provider.pageSize)
+        if let _dataSourceDelegate = pagingView as? PageDataSourceDelegate {
+            dataSource.delegate = _dataSourceDelegate
+        }
+    }
+    
     public func setupForPullDownToRefresh(nativeControl: Bool = false) {
         if nativeControl {
             let refreshControl = UIRefreshControl { [weak self] control in
@@ -63,7 +70,8 @@ extension PagingControllerProtocol where Self: PagingControllerConfigurable {
                 control.beginRefreshing()
                 loadFirstPageWithCompletion { [weak self] in
                     guard let self = self else { return }
-                    self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent, end: control.endRefreshing)
+                    self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent,
+                                                        end: control.endRefreshing)
                 }
             } else {
                 print("*** Refresh control not found ***")
@@ -77,25 +85,18 @@ extension PagingControllerProtocol where Self: PagingControllerConfigurable {
         startLoading()
         loadFirstPageWithCompletion { [weak self] in
             guard let self = self else { return }
-            self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent, end: self.stopLoading)
-        }
-    }
-}
-
-extension PagingControllerProtocol where Self: PagingControllerConfigurable {
-    public func setupForPagingDataSource() {
-        dataSource.settings = PageDataSettings(pageSize: provider.pageSize)
-        if let _dataSourceDelegate = pagingView as? PageDataSourceDelegate {
-            dataSource.delegate = _dataSourceDelegate
+            self.pagingScrollView.reloadContent(instantReloadContent: self.instantReloadContent,
+                                                end: self.stopLoading)
         }
     }
     
-    public func setupForPaging(nativeRefreshControl: Bool = false, firstLoadstyle: PagingFirstLoadStyle = .progressHUD) {
+    public func setupPagingControlling(nativeRefreshControl: Bool = false,
+                                       firstLoadingStyle style: PagingFirstLoadingStyle = .progressHUD) {
         setupForPagingDataSource()
         setupForPullDownToRefresh(nativeControl: nativeRefreshControl)
         setupForPullUpToLoadMore()
         
-        switch firstLoadstyle {
+        switch style {
         case .autoTrigger:
             triggerPull(nativeRefreshControl: nativeRefreshControl)
         case .progressHUD:
@@ -103,6 +104,12 @@ extension PagingControllerProtocol where Self: PagingControllerConfigurable {
         default:
             break
         }
+    }
+}
+
+extension PagingControllerConfigurable where Self: PagingControllerProtocol {
+    public func setupForPaging() {
+        setupPagingControlling(nativeRefreshControl: true)
     }
 }
 
