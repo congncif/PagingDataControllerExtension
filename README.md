@@ -1,6 +1,6 @@
 # DEPRECATED Please use `PagingDataController`!
 
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)]
+![No Maintenance Intended](http://unmaintained.tech/badge.svg)
 
 # PagingDataControllerExtension
 
