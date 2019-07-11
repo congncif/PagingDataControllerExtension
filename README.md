@@ -1,3 +1,5 @@
+# DEPRECATED Please use `PagingDataController`!
+
 # PagingDataControllerExtension
 
 <img src="https://i.imgur.com/ATK9hZV.png"/>
