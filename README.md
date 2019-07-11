@@ -1,5 +1,7 @@
 # DEPRECATED Please use `PagingDataController`!
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)]
+
 # PagingDataControllerExtension
 
 <img src="https://i.imgur.com/ATK9hZV.png"/>
